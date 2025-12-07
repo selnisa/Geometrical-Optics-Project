@@ -44,7 +44,7 @@ M_Lens2 = M_convex2*M_propinlens2*M_concave2;
 
 %Houghton corrector matrix
 
-M_HoughtonCorrector = M_Lens2*M_prop1*M_lens1;
+M_HoughtonCorrector = M_Lens2*M_prop1*M_Lens1;
 
 disp(M_Lens1)
 disp(M_Lens2)
