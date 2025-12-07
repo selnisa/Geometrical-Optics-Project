@@ -1,0 +1,51 @@
+%Define variables
+
+%Refractive index
+n1 = 1;
+n_BK7 = 1.51680003;
+n2 = n_BK7;
+
+%Lens1
+R1 = 184.4;
+t1 = 1.54;
+R2 = -528.3;
+
+%Propagation1
+t2 = 0.28;
+
+%Lens2
+R3 = -184.4;
+t3 = 0.95;
+R4 = 528.3;
+
+%Matrix of LENS1
+
+M_convex1 = [ 1 , 0 ; -(n2-n1)/(n2*R1) , n1/n2 ];
+
+M_propinlens1 = [ 1 , t1 ; 0 , 1 ];
+
+M_concave1 = [ 1 , 0 ; -(n1-n2)/(n1*R2) , n2/n1 ];
+
+M_Lens1 = M_concave1*M_propinlens1*M_convex1;
+
+%Matrix for propagation in between lenses
+
+M_prop1 = [ 1 , t2 ; 0 , 1 ];
+
+%Matrix of LENS2
+
+M_concave2 = [ 1 , 0 ; -(n2-n1)/(n2*R3) , n1/n2 ];
+
+M_propinlens2 = [ 1 , t3 ; 0 , 1 ];
+
+M_convex2 = [ 1 , 0 ; -(n1-n2)/(n1*R4) , n2/n1 ];
+
+M_Lens2 = M_convex2*M_propinlens2*M_concave2;
+
+%Houghton corrector matrix
+
+M_HoughtonCorrector = M_Lens2*M_prop1*M_lens1;
+
+disp(M_Lens1)
+disp(M_Lens2)
+disp(M_HoughtonCorrector)
